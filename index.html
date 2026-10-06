@@ -1,0 +1,778 @@
+<style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        background: #f5f6ff;
+        color: #222;
+        line-height: 1.6;
+    }
+
+    /* Navigation */
+    nav {
+        background: #171c3b;
+        padding: 18px 8%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+
+    .logo {
+        color: white;
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    nav ul {
+        list-style: none;
+        display: flex;
+        gap: 25px;
+    }
+
+    nav a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+
+    nav a:hover {
+        color: #7c8cff;
+    }
+
+    /* Hero */
+    .hero {
+        min-height: 90vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 40px 20px;
+        background: linear-gradient(135deg, #171c3b, #5865f2);
+        color: white;
+    }
+
+    .hero h1 {
+        font-size: clamp(40px, 8vw, 80px);
+        margin-bottom: 15px;
+    }
+
+    .hero p {
+        font-size: 20px;
+        margin-bottom: 25px;
+    }
+
+    .button {
+        display: inline-block;
+        background: white;
+        color: #5865f2;
+        padding: 12px 25px;
+        border-radius: 25px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+
+    .button:hover {
+        background: #e8eaff;
+        transform: scale(1.05);
+    }
+
+    /* Sections */
+    section {
+        padding: 70px 10%;
+        text-align: center;
+    }
+
+    section h2 {
+        font-size: 35px;
+        color: #171c3b;
+        margin-bottom: 20px;
+    }
+
+    /* Cards */
+    .cards {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 25px;
+        margin-top: 30px;
+    }
+
+    .card {
+        background: white;
+        width: 280px;
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        transition: 0.3s;
+        text-align: center;
+    }
+
+    .card input {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        margin: 15px 0;
+        text-align: center;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-size: 16px;
+    }
+
+    .card button {
+        border: none;
+        cursor: pointer;
+    }
+    #gameMessage {
+    margin-top: 15px;
+    font-weight: bold;
+    color: #5865f2;
+    min-height: 25px;
+}
+
+#score {
+    margin-top: 10px;
+    font-weight: bold;
+    color: #8b5cf6;
+}
+
+    .card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .card h3 {
+        color: #5865f2;
+        margin-bottom: 10px;
+    }
+
+    .project-icon {
+        font-size: 45px;
+        margin-bottom: 15px;
+    }
+
+    .project-button {
+        display: inline-block;
+        margin-top: 15px;
+        padding: 8px 18px;
+        background: #5865f2;
+        color: white;
+        border-radius: 20px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+
+    .project-button:hover {
+        background: #171c3b;
+        transform: scale(1.05);
+    }
+
+    /* Game message */
+    #gameMessage {
+        margin-top: 15px;
+        font-weight: bold;
+        color: #171c3b;
+    }
+
+    /* Skills */
+    .skills-container {
+        max-width: 700px;
+        margin: 35px auto 0;
+        text-align: left;
+    }
+
+    .skill {
+        background: white;
+        padding: 20px;
+        margin-bottom: 20px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    }
+
+    .skill-info {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        font-weight: bold;
+    }
+
+    .skill-info span:first-child {
+        color: #171c3b;
+    }
+
+    .skill-info span:last-child {
+        color: #5865f2;
+    }
+
+    .skill-bar {
+        width: 100%;
+        height: 12px;
+        background: #e5e7f5;
+        border-radius: 20px;
+        overflow: hidden;
+    }
+
+    .skill-level {
+        height: 100%;
+        background: linear-gradient(90deg, #5865f2, #8b5cf6);
+        border-radius: 20px;
+        animation: grow 1.5s ease-out;
+    }
+
+    .html {
+        width: 35%;
+    }
+
+    .css {
+        width: 25%;
+    }
+
+    .javascript {
+        width: 10%;
+    }
+
+    .programming {
+        width: 15%;
+    }
+
+    .problem {
+        width: 40%;
+    }
+
+    @keyframes grow {
+        from {
+            width: 0;
+        }
+    }
+
+    /* Contact */
+    .contact {
+        background: #e9ecff;
+    }
+
+    .contact-button {
+        display: inline-block;
+        margin-top: 20px;
+        background: #5865f2;
+        color: white;
+        padding: 12px 25px;
+        border-radius: 25px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+
+    .contact-button:hover {
+        background: #171c3b;
+    }
+
+    /* Footer */
+    footer {
+        background: #171c3b;
+        color: white;
+        text-align: center;
+        padding: 25px;
+    }
+
+    /* Mobile */
+    @media (max-width: 700px) {
+        nav {
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        nav ul {
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        section {
+            padding: 50px 5%;
+        }
+
+        .hero h1 {
+            font-size: 40px;
+        }
+
+        .hero p {
+            font-size: 17px;
+        }
+    }
+</style>
+<!-- Navigation -->
+<nav>
+    <div class="logo">
+        Gaudence
+    </div>
+
+    <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#studies">Studies</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</nav>
+
+
+<!-- Home -->
+<section class="hero" id="home">
+    <div>
+        <h1>WELCOME TO GAUDENCE'S WORLD 🌍</h1>
+
+        <p>
+            Student at RCA 👩‍🎓 • Future Web Developer 🧑‍💻 • Future Software Engineer 💻
+        </p>
+
+        <a href="#about" class="button">
+            Learn About Me
+        </a>
+    </div>
+</section>
+
+
+<!-- About -->
+<section id="about">
+    <h2>About Me 👋</h2>
+
+    <p>
+        Hello! My name is Gaudence, and I am a student at RCA.
+        I am passionate about technology and learning new things.
+        I am currently learning how to create websites and improve
+        my computer skills.
+    </p>
+
+    <br>
+
+    <p>
+        My dream is to become a professional
+        <strong>Web Developer</strong> and
+        <strong>Software Engineer</strong>.
+        I want to build useful and creative technology that can
+        help people and make a difference.
+    </p>
+</section>
+
+
+<!-- Studies -->
+<section id="studies">
+    <h2>My Studies 🎓</h2>
+
+    <div class="cards">
+
+        <div class="card">
+            <div class="project-icon">📚</div>
+
+            <h3>My School</h3>
+
+            <p>
+                I study at RCA and I'm developing my knowledge
+                and skills.
+            </p>
+        </div>
+
+
+        <div class="card">
+            <div class="project-icon">💻</div>
+
+            <h3>Technology</h3>
+
+            <p>
+                I am learning how computers, programming,
+                and websites work.
+            </p>
+        </div>
+
+
+        <div class="card">
+            <div class="project-icon">🎯</div>
+
+            <h3>My Goals</h3>
+
+            <p>
+                I want to continue learning and create useful
+                technology projects.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- Skills -->
+<section id="skills">
+    <h2>My Skills 💻</h2>
+
+    <p>
+        These are the skills I am learning and developing on
+        my journey to becoming a Web Developer and Software Engineer.
+    </p>
+
+    <div class="skills-container">
+
+        <div class="skill">
+            <div class="skill-info">
+                <span>HTML</span>
+                <span>Beginner</span>
+            </div>
+
+            <div class="skill-bar">
+                <div class="skill-level html"></div>
+            </div>
+        </div>
+
+
+        <div class="skill">
+            <div class="skill-info">
+                <span>CSS</span>
+                <span>Beginner</span>
+            </div>
+
+            <div class="skill-bar">
+                <div class="skill-level css"></div>
+            </div>
+        </div>
+
+
+        <div class="skill">
+            <div class="skill-info">
+                <span>JavaScript</span>
+                <span>Learning</span>
+            </div>
+
+            <div class="skill-bar">
+                <div class="skill-level javascript"></div>
+            </div>
+        </div>
+
+
+        <div class="skill">
+            <div class="skill-info">
+                <span>Programming</span>
+                <span>Learning</span>
+            </div>
+
+            <div class="skill-bar">
+                <div class="skill-level programming"></div>
+            </div>
+        </div>
+
+
+        <div class="skill">
+            <div class="skill-info">
+                <span>Problem Solving</span>
+                <span>Developing</span>
+            </div>
+
+            <div class="skill-bar">
+                <div class="skill-level problem"></div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- Projects -->
+<section id="projects">
+    <h2>My Projects 🚀</h2>
+
+    <p>
+        These are some projects I am working on or plan to build
+        as I continue learning.
+    </p>
+
+    <div class="cards">
+
+        <!-- Personal Website -->
+        <div class="card">
+            <div class="project-icon">🌐</div>
+
+            <h3>My Personal Website</h3>
+
+            <p>
+                This website is my first web development project.
+                I am building it using HTML and CSS.
+            </p>
+
+            <a href="#home" class="project-button">
+                View Project
+            </a>
+        </div>
+
+
+        <!-- Calculator -->
+        <div class="card">
+            <div class="project-icon">🧮</div>
+
+            <h3>Calculator</h3>
+
+            <p>
+                I plan to build a calculator using HTML, CSS,
+                and JavaScript.
+            </p>
+
+            <a href="#projects" class="project-button">
+                Coming Soon
+            </a>
+        </div>
+
+
+        <!-- Guess the Number -->
+<div class="card">
+
+    <div class="project-icon">
+        🎯
+    </div>
+
+    <h3>
+        Guess the Number
+    </h3>
+
+    <p>
+        I'm thinking of a number between 1 and 10.
+        Can you guess it?
+    </p>
+
+    <input
+        type="number"
+        id="guessInput"
+        min="1"
+        max="10"
+        placeholder="Enter 1 - 10"
+    >
+
+    <button
+        class="project-button"
+        id="guessButton"
+        type="button">
+        Guess 🎯
+    </button>
+
+    <p id="gameMessage">
+        Make your first guess!
+    </p>
+<button
+    class="project-button"
+    id="restartButton"
+    type="button">
+    🔄 Play Again
+</button>
+<p id="score">
+    🏆 Score: 0
+</p>
+
+
+</div>
+<!-- Rock Paper Scissors -->
+<div class="card">
+
+    <div class="project-icon">✊</div>
+
+    <h3>Rock Paper Scissors</h3>
+
+    <p>
+        Choose Rock, Paper, or Scissors and play against the computer.
+    </p>
+
+    <div class="rps-buttons">
+
+        <button class="rps-button" data-choice="rock" type="button">
+            ✊ Rock
+        </button>
+
+        <button class="rps-button" data-choice="paper" type="button">
+            ✋ Paper
+        </button>
+
+        <button class="rps-button" data-choice="scissors" type="button">
+            ✌️ Scissors
+        </button>
+
+    </div>
+
+    <p id="rpsMessage">
+        Choose your move!
+    </p>
+
+    <p id="rpsScore">
+        🏆 You: 0 | 🤖 Computer: 0
+    </p>
+
+</div>
+
+    </div>
+</section>
+
+
+<!-- Contact -->
+<section class="contact" id="contact">
+    <h2>Contact Me 📩</h2>
+
+    <p>
+        My contact information will be added here later.
+    </p>
+
+    <a href="#home" class="contact-button">
+        Back to Home
+    </a>
+</section>
+
+
+<!-- Footer -->
+<footer>
+    <p>
+        © 2026 Gaudence. All rights reserved.
+    </p>
+
+    <p>
+        Future Web Developer & Software Engineer 💻
+    </p>
+</footer>
+
+<!-- JavaScript -->
+<script>
+
+    const guessInput = document.getElementById("guessInput");
+    const guessButton = document.getElementById("guessButton");
+    const gameMessage = document.getElementById("gameMessage");
+    const restartButton = document.getElementById("restartButton");
+    const scoreDisplay = document.getElementById("score");
+
+    let secretNumber = Math.floor(Math.random() * 10) + 1;
+    let attempts = 0;
+    let score = 0;
+ 
+    guessButton.addEventListener("click", function() {
+
+        const playerGuess = Number(guessInput.value);
+
+        if (playerGuess < 1 || playerGuess > 10 || !playerGuess) {
+
+  gameMessage.textContent =
+    "⚠️ Please enter a number between 1 and 10.";
+
+gameMessage.style.color = "#ef4444";
+ 
+
+            return;
+        }
+
+        attempts++;
+
+        if (playerGuess === secretNumber) {
+
+    score++;
+
+ gameMessage.textContent =
+    "🎉 Correct! You won in " + attempts + " attempts! 🏆";
+
+gameMessage.style.color = "#22c55e";
+
+
+    scoreDisplay.textContent =
+        "🏆 Score: " + score;
+
+    secretNumber = Math.floor(Math.random() * 10) + 1;
+    attempts = 0;
+
+
+        } else if (playerGuess > secretNumber) {
+
+gameMessage.textContent =
+    "🔼 Too high! Try a smaller number.";
+
+gameMessage.style.color = "#f97316";
+
+
+        } else {
+
+gameMessage.textContent =
+    "🔽 Too low! Try a bigger number.";
+
+gameMessage.style.color = "#5865f2";
+
+        }
+  restartButton.addEventListener("click", function() {
+
+    secretNumber = Math.floor(Math.random() * 10) + 1;
+    attempts = 0;
+
+    guessInput.value = "";
+
+
+
+});
+
+    });
+
+// Rock Paper Scissors
+
+const rpsButtons = document.querySelectorAll(".rps-button");
+const rpsMessage = document.getElementById("rpsMessage");
+const rpsScore = document.getElementById("rpsScore");
+
+let playerScore = 0;
+let computerScore = 0;
+
+rpsButtons.forEach(function(button) {
+
+    button.addEventListener("click", function() {
+
+        const playerChoice = button.dataset.choice;
+
+        const choices = ["rock", "paper", "scissors"];
+
+        const computerChoice =
+            choices[Math.floor(Math.random() * choices.length)];
+
+        if (playerChoice === computerChoice) {
+
+            rpsMessage.textContent =
+                "🤝 Draw! We both chose " + computerChoice + ".";
+
+            rpsMessage.style.color = "#f59e0b";
+
+        } else if (
+            (playerChoice === "rock" && computerChoice === "scissors") ||
+            (playerChoice === "paper" && computerChoice === "rock") ||
+            (playerChoice === "scissors" && computerChoice === "paper")
+        ) {
+
+            playerScore++;
+
+            rpsMessage.textContent =
+                "🎉 You win! Computer chose " + computerChoice + "!";
+
+            rpsMessage.style.color = "#22c55e";
+
+        } else {
+
+            computerScore++;
+
+            rpsMessage.textContent =
+                "😢 You lose! Computer chose " + computerChoice + ".";
+
+            rpsMessage.style.color = "#ef4444";
+        }
+
+        rpsScore.textContent =
+            "🏆 You: " + playerScore +
+            " | 🤖 Computer: " + computerScore;
+
+    });
+
+});
+
+</script>
